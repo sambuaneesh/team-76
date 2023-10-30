@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="description" content="Table of Contents: Tree Data Structure Functions:
+Tree MakeNode(char *name) Tree Insert(Tree parent, char *path) Tree Search_Till_Parent(Tree T, char *path, int insert) void PrintTree(Tree T) void Del_Rec(Tree T) int Delete_Path(Tree T, char *path) Storage Server Functions:
+storage_servers MakeNode_ss(char *ip_addr, int client_port, int server_port) void load_SS(Tree T, char *file_name) int initialize_SS(int *ss_sock) File and Directory Manipulation Functions:
+int create_file(char *file_path) int create_directory(char *file_path) int delete_file(char *file_path) int delete_directory(char *file_path) Socket and Connection Functions:">  
+
+  <title>
+    
+      Defined Functions
+    
+  </title>
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/team-76" />
+  
+  
+  
+  <link rel="stylesheet" href="/team-76/css/main.c5af9bae99b4a3d315b9f39305ffff27e9c3383fbbfd8b5fcaf2237667021a333a982fb958d1813a720b0a660b14022337553ae1ca93ef2ee17c4ae628ac19cb.css" integrity="sha512-xa&#43;brpm0o9MVufOTBf//J&#43;nDOD&#43;7/YtfyvIjdmcCGjM6mC&#43;5WNGBOnILCmYLFAIjN1U64cqT7y7hfErmKKwZyw==" />
+  
+</head>
+<body a="auto">
+        <main class="page-content" aria-label="Content">
+            <div class="w">
+<a href="/team-76">$ cd ../</a>
+
+
+<article>
+    <p class="post-meta">
+        <time datetime="2023-10-30 16:50:56 &#43;0530 IST">
+            
+        </time>
+    </p>
+
+    <h1>Defined Functions</h1>
+
+    
+
+    <h3 id="table-of-contents"><strong>Table of Contents:</strong></h3>
+<ol>
+<li>
+<p><strong><a href="#tree-data-structure-functions">Tree Data Structure Functions:</a></strong></p>
+<ul>
+<li><a href="#tree-makenodechar-name">Tree MakeNode(char *name)</a></li>
+<li><a href="#tree-inserttree-parent-char-path">Tree Insert(Tree parent, char *path)</a></li>
+<li><a href="#tree-search_till_parenttree-t-char-path-int-insert">Tree Search_Till_Parent(Tree T, char *path, int insert)</a></li>
+<li><a href="#void-printtreet-tree-t">void PrintTree(Tree T)</a></li>
+<li><a href="#void-del_rect-tree-t">void Del_Rec(Tree T)</a></li>
+<li><a href="#int-delete_patht-tree-t-char-path">int Delete_Path(Tree T, char *path)</a></li>
+</ul>
+</li>
+<li>
+<p><strong><a href="#storage-server-functions">Storage Server Functions:</a></strong></p>
+<ul>
+<li><a href="#storage_servers-makenode_sschar-ip_addr-int-client_port-int-server_port">storage_servers MakeNode_ss(char *ip_addr, int client_port, int server_port)</a></li>
+<li><a href="#void-load_sst-tree-t-char-file_name">void load_SS(Tree T, char *file_name)</a></li>
+<li><a href="#int-initialize_sst-int-ss_sock">int initialize_SS(int *ss_sock)</a></li>
+</ul>
+</li>
+<li>
+<p><strong><a href="#file-and-directory-manipulation-functions">File and Directory Manipulation Functions:</a></strong></p>
+<ul>
+<li><a href="#int-create_filechar-file_path">int create_file(char *file_path)</a></li>
+<li><a href="#int-create_directorychar-file_path">int create_directory(char *file_path)</a></li>
+<li><a href="#int-delete_filechar-file_path">int delete_file(char *file_path)</a></li>
+<li><a href="#int-delete_directorychar-file_path">int delete_directory(char *file_path)</a></li>
+</ul>
+</li>
+<li>
+<p><strong><a href="#socket-and-connection-functions">Socket and Connection Functions:</a></strong></p>
+<ul>
+<li><a href="#void-connect_to_naming_serverchar-ip-int-sock-struct-sockaddr_in-addr">void connect_to_naming_server(char *ip, int *sock, struct sockaddr_in *addr)</a></li>
+<li><a href="#void-open_naming_server_portint-port_number-int-server_sock-struct-sockaddr_in-server_addr">void open_naming_server_port(int port_number, int *server_sock, struct sockaddr_in *server_addr)</a></li>
+<li><a href="#void-connect_to_ss_from_nsint-ns_sock-struct-sockaddr_in-ns_addr-int-port_num">void connect_to_SS_from_NS(int *ns_sock, struct sockaddr_in *ns_addr, int port_num)</a></li>
+<li><a href="#void-connect_to_ss_from_clientint-sock-struct-sockaddr_in-addr-char-ns_ip-int-ns_port">void connect_to_SS_from_client(int *sock, struct sockaddr_in *addr, char *ns_ip, int ns_port)</a></li>
+<li><a href="#void-make_socket_non_blockingint-socket">void make_socket_non_blocking(int socket)</a></li>
+<li><a href="#void-makesssend_vitalint-naming_server_sock-char-ip-int-client_port-int-server_port">void MakeSSsend_vital(int *naming_server_sock, char *ip, int client_port, int server_port)</a></li>
+<li><a href="#void-sendinfoint-sock-struct-sockaddr_in-addr-char-path-char-op">void SendInfo(int *sock, struct sockaddr_in *addr, char *path, char *op)</a></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="tree-data-structure-functions"><strong>Tree Data Structure Functions:</strong></h3>
+<h4 id="tree-makenodechar-name"><code>Tree MakeNode(char *name)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Allocates memory for a new tree node and initializes its path and pointers.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>name</code>: A string representing the name of the node.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> A pointer to the newly created tree node.</p>
+</li>
+</ul>
+<hr>
+<h4 id="tree-inserttree-parent-char-path"><code>Tree Insert(Tree parent, char *path)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Inserts a new node with the given path as a child of the parent node.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>parent</code>: Pointer to the parent tree node.</li>
+<li><code>path</code>: A string representing the path for the new node.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> Pointer to the newly inserted tree node.</p>
+</li>
+</ul>
+<hr>
+<h4 id="tree-search_till_parenttree-t-char-path-int-insert"><code>Tree Search_Till_Parent(Tree T, char *path, int insert)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Searches for a node with the given path. If not found and <code>insert</code> is 1, it creates and inserts a new node.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>T</code>: Pointer to the root tree node.</li>
+<li><code>path</code>: A string representing the path to search for.</li>
+<li><code>insert</code>: Integer flag (1 or 0) indicating whether to insert a new node if not found.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> Pointer to the parent node of the found/inserted node, or NULL if path not found.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-printtreetree-t"><code>void PrintTree(Tree T)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Recursively prints the tree starting from the given node.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>T</code>: Pointer to the tree node to start printing from.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-del_rectree-t"><code>void Del_Rec(Tree T)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Recursively deletes the tree starting from the given node.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>T</code>: Pointer to the tree node to start deletion from.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="int-delete_pathtree-t-char-path"><code>int Delete_Path(Tree T, char *path)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Deletes the node with the given path from the tree.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>T</code>: Pointer to the root tree node.</li>
+<li><code>path</code>: A string representing the path to delete.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> 0 if successful, -1 if path not found.</p>
+</li>
+</ul>
+<hr>
+<h3 id="storage-server-functions"><strong>Storage Server Functions:</strong></h3>
+<h4 id="storage_servers-makenode_sschar-ip_addr-int-client_port-int-server_port"><code>storage_servers MakeNode_ss(char *ip_addr, int client_port, int server_port)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Allocates memory for a new storage server node and initializes its IP address, client port, server port, and file tree.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>ip_addr</code>: A string representing the IP address of the storage server.</li>
+<li><code>client_port</code>: Integer representing the client port number.</li>
+<li><code>server_port</code>: Integer representing the server port number.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> Pointer to the newly created storage server node.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-load_sstree-t-char-file_name"><code>void load_SS(Tree T, char *file_name)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Loads storage server information from a file and constructs the file tree.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>T</code>: Pointer to the root tree node (files and directories) of the storage server.</li>
+<li><code>file_name</code>: A string representing the name of the file containing storage server information.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="int-initialize_ssint-ss_sock"><code>int initialize_SS(int *ss_sock)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Initializes a storage server by receiving vital information (IP, ports, paths) from the naming server and constructs its file tree.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>ss_sock</code>: Pointer to the storage server socket.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> 0 if successful, -1 on error.</p>
+</li>
+</ul>
+<hr>
+<h3 id="file-and-directory-manipulation-functions"><strong>File and Directory Manipulation Functions:</strong></h3>
+<h4 id="int-create_filechar-file_path"><code>int create_file(char *file_path)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Creates a new file at the specified file path.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>file_path</code>: A string representing the path of the file to be created.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> 0 if successful, -1 on error.</p>
+</li>
+</ul>
+<hr>
+<h4 id="int-create_directorychar-file_path"><code>int create_directory(char *file_path)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Creates a new directory at the specified path.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>file_path</code>: A string representing the path of the directory to be created.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> 0 if successful, -1 on error.</p>
+</li>
+</ul>
+<hr>
+<h4 id="int-delete_filechar-file_path"><code>int delete_file(char *file_path)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Deletes the file at the specified path.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>file_path</code>: A string representing the path of the file to be deleted.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> 0 if successful, -1 on error.</p>
+</li>
+</ul>
+<hr>
+<h4 id="int-delete_directorychar-file_path"><code>int delete_directory(char *file_path)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Deletes the directory at the specified path.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>file_path</code>: A string representing the path of the directory to be deleted.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> 0 if successful, -1 on error.</p>
+</li>
+</ul>
+<hr>
+<h3 id="socket-and-connection-functions"><strong>Socket and Connection Functions:</strong></h3>
+<h4 id="void-connect_to_naming_serverchar-ip-int-sock-struct-sockaddr_in-addr"><code>void connect_to_naming_server(char *ip, int *sock, struct sockaddr_in *addr)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Establishes a connection to the naming server.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>ip</code>: A string representing the IP address of the naming server.</li>
+<li><code>sock</code>: Pointer to the socket used for the connection.</li>
+<li><code>addr</code>: Pointer to the sockaddr_in structure for naming server address.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-open_naming_server_portint-port_number-int-server_sock-struct-sockaddr_in-server_addr"><code>void open_naming_server_port(int port_number, int *server_sock, struct sockaddr_in *server_addr)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Opens a port for the naming server to listen to incoming connections.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>port_number</code>: Integer representing the port number to be opened.</li>
+<li><code>server_sock</code>: Pointer to the socket used for the server.</li>
+<li><code>server_addr</code>: Pointer to the sockaddr_in structure for server address.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-connect_to_ss_from_nsint-ns_sock-struct-sockaddr_in-ns_addr-int-port_num"><code>void connect_to_SS_from_NS(int *ns_sock, struct sockaddr_in *ns_addr, int port_num)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Establishes a connection from the naming server to a storage server.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>ns_sock</code>: Pointer to the socket used for the connection from the naming server.</li>
+<li><code>ns_addr</code>: Pointer to the sockaddr_in structure for storage server address.</li>
+<li><code>port_num</code>: Integer representing the port number of the storage server.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-connect_to_ss_from_clientint-sock-struct-sockaddr_in-addr-char-ns_ip-int-ns_port"><code>void connect_to_SS_from_client(int *sock, struct sockaddr_in *addr, char *ns_ip, int ns_port)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Establishes a connection from the client to a storage server.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>sock</code>: Pointer to the socket used for the connection.</li>
+<li><code>addr</code>: Pointer to the sockaddr_in structure for storage server address.</li>
+<li><code>ns_ip</code>: A string representing the IP address of the storage server.</li>
+<li><code>ns_port</code>: Integer representing the port number of the storage server.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-make_socket_non_blockingint-socket"><code>void make_socket_non_blocking(int socket)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Configures a socket to be non-blocking.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>socket</code>: Integer representing the socket to be configured.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-makesssend_vitalint-naming_server_sock-char-ip">`void MakeSSsend_vital(int *naming_server_sock, char *ip</h4>
+<p>, int client_port, int server_port)`</p>
+<ul>
+<li>
+<p><strong>Description:</strong> Sends vital information (IP, ports) from the storage server to the naming server.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>naming_server_sock</code>: Pointer to the socket used for communication with the naming server.</li>
+<li><code>ip</code>: A string representing the IP address of the storage server.</li>
+<li><code>client_port</code>: Integer representing the client port number of the storage server.</li>
+<li><code>server_port</code>: Integer representing the server port number of the storage server.</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+<h4 id="void-sendinfoint-sock-struct-sockaddr_in-addr-char-path-char-op"><code>void SendInfo(int *sock, struct sockaddr_in *addr, char *path, char *op)</code></h4>
+<ul>
+<li>
+<p><strong>Description:</strong> Sends file or directory information from the naming server to the client or from the client to the storage server.</p>
+</li>
+<li>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>sock</code>: Pointer to the socket used for communication.</li>
+<li><code>addr</code>: Pointer to the sockaddr_in structure for the destination address.</li>
+<li><code>path</code>: A string representing the file or directory path.</li>
+<li><code>op</code>: A string representing the operation (get or put).</li>
+</ul>
+</li>
+<li>
+<p><strong>Returns:</strong> None.</p>
+</li>
+</ul>
+<hr>
+
+</article>
+
+            </div>
+        </main>
+    </body>
+</html>

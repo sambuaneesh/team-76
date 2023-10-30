@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archives on [Team-76] Project Docs</title>
+    <link>https://sambuaneesh.github.io/team-76/archive/</link>
+    <description>Recent content in Archives on [Team-76] Project Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 30 Oct 2023 18:55:24 +0530</lastBuildDate><atom:link href="https://sambuaneesh.github.io/team-76/archive/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Project_info</title>
+      <link>https://sambuaneesh.github.io/team-76/archive/project_info/</link>
+      <pubDate>Mon, 30 Oct 2023 18:55:24 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/archive/project_info/</guid>
+      <description>Network File System Simply put - implement a simple network (or rather, a distributed) file system from scratch. Image
+Deadline: 11:59PM, 19th November, 2023
+Github Classroom We will use GitHub classroom for the projects. The instructions for registering your team are given below. Please read all the instructions before proceeding.
+One teammate has to create the team. They need to click on this link. This opens a page of registered teams.</description>
+    </item>
+    
+  </channel>
+</rss>

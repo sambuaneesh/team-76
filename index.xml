@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>[Team-76] Project Docs</title>
+    <link>https://sambuaneesh.github.io/team-76/</link>
+    <description>Recent content on [Team-76] Project Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 25 Aug 2022 21:30:04 +0800</lastBuildDate><atom:link href="https://sambuaneesh.github.io/team-76/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flow</title>
+      <link>https://sambuaneesh.github.io/team-76/secret/flow/</link>
+      <pubDate>Tue, 31 Oct 2023 16:21:22 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/secret/flow/</guid>
+      <description>flow of control
+client connects to naming server client sends option client sends path client sends create option naming server checks if path is in list of accessible paths if yes, naming server sends success message to client naming server sends path to storage server naming server sends create option to storage server storage server creates file/directory storage server sends success message to naming server naming server sends success message to client client disconnects from naming server naming server disconnects from storage server storage server disconnects from naming server storage server disconnects from client storage server disconnects from storage server naming server</description>
+    </item>
+    
+    <item>
+      <title>Client</title>
+      <link>https://sambuaneesh.github.io/team-76/secret/client/</link>
+      <pubDate>Mon, 30 Oct 2023 22:53:24 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/secret/client/</guid>
+      <description>Sure, let&amp;rsquo;s go through the client.c code step by step, explaining each part in detail.
+int main() { int naming_server_sock; struct sockaddr_in client_addr; socklen_t addr_size; Initialization: The program starts by declaring variables for the naming server socket and client address. connect_to_naming_server(&amp;#34;127.0.0.1&amp;#34;, &amp;amp;naming_server_sock, &amp;amp;client_addr); Connecting to Naming Server: The client establishes a connection with the naming server at the IP address &amp;ldquo;127.0.0.1&amp;rdquo;. int role = 2; if (send(naming_server_sock, &amp;amp;role, sizeof(role), 0) == -1) { perror(RED &amp;#34;[-]Send error&amp;#34; RESET); exit(1); } Role Assignment: The client informs the naming server that it is a client by sending the role (in this case, 2) to the server.</description>
+    </item>
+    
+    <item>
+      <title>Storage Server</title>
+      <link>https://sambuaneesh.github.io/team-76/secret/storage_server/</link>
+      <pubDate>Mon, 30 Oct 2023 22:49:17 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/secret/storage_server/</guid>
+      <description>main() Function Variable Declarations:
+int port_for_client, port_for_nm; char ip[16] = {&amp;#39;\0&amp;#39;}; char paths_file[MAX_FILE_NAME] = {&amp;#39;\0&amp;#39;}; The program starts by declaring variables to store port numbers, IP address, and file paths.
+User Input:
+printf(&amp;#34;Enter the port number for client: &amp;#34;); scanf(&amp;#34;%d&amp;#34;, &amp;amp;port_for_client); printf(&amp;#34;Enter the port number for NS: &amp;#34;); scanf(&amp;#34;%d&amp;#34;, &amp;amp;port_for_nm); printf(&amp;#34;Enter the IP address of NS: &amp;#34;); scanf(&amp;#34;%s&amp;#34;, ip); printf(&amp;#34;Enter name of paths file: &amp;#34;); scanf(&amp;#34;%s&amp;#34;, paths_file); The program prompts the user for input: client port number, NS port number, NS IP address, and the name of the paths file.</description>
+    </item>
+    
+    <item>
+      <title>Naming Server</title>
+      <link>https://sambuaneesh.github.io/team-76/secret/naming_server/</link>
+      <pubDate>Mon, 30 Oct 2023 22:44:46 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/secret/naming_server/</guid>
+      <description>Step 1: Initialization and Listening for Connections Tree SS1 = MakeNode(&amp;#34;.&amp;#34;); storage_server_list = NULL; int nm_sock, client_sock, ss_sock; struct sockaddr_in server_addr, client_addr, ss_addr; socklen_t client_addr_size, ss_addr_size; ss_addr_size = sizeof(ss_addr); open_naming_server_port(5566, &amp;amp;nm_sock, &amp;amp;server_addr); make_socket_non_blocking(nm_sock); // Set non-blocking mode for the naming server socket int ns_sock; struct sockaddr_in ns_addr; int something_connect = 0; int num_ss = 0; int num_client = 0; int role = 0; Explanation:
+SS1 represents the root node of the file system tree.</description>
+    </item>
+    
+    <item>
+      <title>Important Definitions</title>
+      <link>https://sambuaneesh.github.io/team-76/docs/definitions/</link>
+      <pubDate>Mon, 30 Oct 2023 20:49:59 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/docs/definitions/</guid>
+      <description>Header File: header.h Included Libraries #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #include &amp;lt;string.h&amp;gt; #include &amp;lt;unistd.h&amp;gt; #include &amp;lt;sys/socket.h&amp;gt; #include &amp;lt;sys/types.h&amp;gt; #include &amp;lt;netinet/in.h&amp;gt; #include &amp;lt;arpa/inet.h&amp;gt; #include &amp;lt;sys/stat.h&amp;gt; #include &amp;lt;dirent.h&amp;gt; #include &amp;lt;ctype.h&amp;gt; #include &amp;lt;fcntl.h&amp;gt; #include &amp;lt;errno.h&amp;gt; Constants #define MAX_NUM_PATHS 2000 #define MAX_FILE_PATH 500 #define MAX_FILE_NAME 100 #define MAX_NUM_FILES 10 #define port 5566 // port number for naming server #define RED &amp;#34;\033[31m&amp;#34; #define GREEN &amp;#34;\033[32m&amp;#34; #define YELLOW &amp;#34;\033[33m&amp;#34; #define PINK &amp;#34;\033[35m&amp;#34; #define CYAN &amp;#34;\033[36m&amp;#34; #define RESET &amp;#34;\033[0m&amp;#34; Struct: TreeNode typedef struct TreeNode* Tree; typedef struct TreeNode { char path[MAX_FILE_NAME]; Tree first_child; Tree next_sibling; Tree prev_sibling; Tree parent; } TreeNode; The TreeNode struct represents a node in the tree structure used for managing file paths.</description>
+    </item>
+    
+    <item>
+      <title>Functions</title>
+      <link>https://sambuaneesh.github.io/team-76/docs/functions/</link>
+      <pubDate>Mon, 30 Oct 2023 20:46:18 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/docs/functions/</guid>
+      <description>Table of Contents: Tree Data Structure Functions:
+Tree MakeNode(char *name) Tree Insert(Tree parent, char *path) Tree Search_Till_Parent(Tree T, char *path, int insert) void PrintTree(Tree T) void Del_Rec(Tree T) int Delete_Path(Tree T, char *path) Storage Server Functions:
+storage_servers MakeNode_ss(char *ip_addr, int client_port, int server_port) void load_SS(Tree T, char *file_name) int initialize_SS(int *ss_sock) File and Directory Manipulation Functions:
+int create_file(char *file_path) int create_directory(char *file_path) int delete_file(char *file_path) int delete_directory(char *file_path) Socket and Connection Functions:</description>
+    </item>
+    
+    <item>
+      <title>Project_info</title>
+      <link>https://sambuaneesh.github.io/team-76/archive/project_info/</link>
+      <pubDate>Mon, 30 Oct 2023 18:55:24 +0530</pubDate>
+      
+      <guid>https://sambuaneesh.github.io/team-76/archive/project_info/</guid>
+      <description>Network File System Simply put - implement a simple network (or rather, a distributed) file system from scratch. Image
+Deadline: 11:59PM, 19th November, 2023
+Github Classroom We will use GitHub classroom for the projects. The instructions for registering your team are given below. Please read all the instructions before proceeding.
+One teammate has to create the team. They need to click on this link. This opens a page of registered teams.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <button id="theme-toggle" onclick="toggleTheme()">T</button>
+
+    <script type="text/javascript">
+        function toggleTheme() {
+            const body = document.body;
+            if (body.getAttribute('a') === 'dark') {
+                body.setAttribute('a', 'light');
+            } else {
+                body.setAttribute('a', 'dark');
+            }
+        }
+    </script><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="description" content="Header File: header.h Included Libraries #include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;unistd.h&gt; #include &lt;sys/socket.h&gt; #include &lt;sys/types.h&gt; #include &lt;netinet/in.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;sys/stat.h&gt; #include &lt;dirent.h&gt; #include &lt;ctype.h&gt; #include &lt;fcntl.h&gt; #include &lt;errno.h&gt; Constants #define MAX_NUM_PATHS 2000 #define MAX_FILE_PATH 500 #define MAX_FILE_NAME 100 #define MAX_NUM_FILES 10 #define port 5566 // port number for naming server #define RED &#34;\033[31m&#34; #define GREEN &#34;\033[32m&#34; #define YELLOW &#34;\033[33m&#34; #define PINK &#34;\033[35m&#34; #define CYAN &#34;\033[36m&#34; #define RESET &#34;\033[0m&#34; Struct: TreeNode typedef struct TreeNode* Tree; typedef struct TreeNode { char path[MAX_FILE_NAME]; Tree first_child; Tree next_sibling; Tree prev_sibling; Tree parent; } TreeNode; The TreeNode struct represents a node in the tree structure used for managing file paths.">  
+
+  <title>
+    
+      Important Definitions
+    
+  </title>
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/team-76" />
+  
+  
+  
+  <link rel="stylesheet" href="/team-76/css/main.6a85a7af1a6b7156001b4b556112280d1e381939d2800ac7ecbad83a93a89ffef6829f8250f61fec6f72de141dc2c58909cd7baeb76a47750be5e0390806839d.css" integrity="sha512-aoWnrxprcVYAG0tVYRIoDR44GTnSgArH7LrYOpOon/72gp&#43;CUPYf7G9y3hQdwsWJCc17rrdqR3UL5eA5CAaDnQ==" />
+  
+</head>
+<body a="dark">
+        <main class="page-content" aria-label="Content">
+            <div class="w">
+<a href="/team-76">$ cd /home</a>
+
+
+<article>
+    <p class="post-meta">
+        <time datetime="2023-10-30 20:49:59 &#43;0530 IST">
+            
+        </time>
+    </p>
+
+    <h1>Important Definitions</h1>
+
+    
+
+    <h2 id="header-file-headerh">Header File: <code>header.h</code></h2>
+<h3 id="included-libraries">Included Libraries</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unistd.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/socket.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/types.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;netinet/in.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;arpa/inet.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;sys/stat.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;dirent.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;ctype.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;fcntl.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;errno.h&gt;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><h3 id="constants">Constants</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#define MAX_NUM_PATHS 2000
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX_FILE_PATH 500
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX_FILE_NAME 100
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define MAX_NUM_FILES 10
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define port 5566               </span><span style="color:#75715e">// port number for naming server
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#define RED &#34;\033[31m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define GREEN &#34;\033[32m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define YELLOW &#34;\033[33m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define PINK &#34;\033[35m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define CYAN &#34;\033[36m&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#define RESET &#34;\033[0m&#34;
+</span></span></span></code></pre></div><h3 id="struct-treenode">Struct: <code>TreeNode</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> TreeNode<span style="color:#f92672">*</span> Tree;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> TreeNode
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> path[MAX_FILE_NAME];
+</span></span><span style="display:flex;"><span>    Tree first_child;
+</span></span><span style="display:flex;"><span>    Tree next_sibling;
+</span></span><span style="display:flex;"><span>    Tree prev_sibling;
+</span></span><span style="display:flex;"><span>    Tree parent;
+</span></span><span style="display:flex;"><span>} TreeNode;
+</span></span></code></pre></div><p>The <code>TreeNode</code> struct represents a node in the tree structure used for managing file paths.</p>
+<h3 id="struct-ss_send">Struct: <code>ss_send</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> ss_send
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> ip_addr[<span style="color:#ae81ff">20</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> client_port;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> server_port;
+</span></span><span style="display:flex;"><span>} ss_send;
+</span></span></code></pre></div><p>The <code>ss_send</code> struct contains information about IP address, client port, and server port for storage server communication.</p>
+<h3 id="struct-storage_servers">Struct: <code>storage_servers</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> ss<span style="color:#f92672">*</span> storage_servers;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">typedef</span> <span style="color:#66d9ef">struct</span> ss
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ss_send <span style="color:#f92672">*</span>ss_send;
+</span></span><span style="display:flex;"><span>    Tree files_and_dirs;
+</span></span><span style="display:flex;"><span>    storage_servers next;
+</span></span><span style="display:flex;"><span>} ss;
+</span></span></code></pre></div><p>The <code>storage_servers</code> struct represents a linked list of storage servers with their connection details and file directory structure.</p>
+<h3 id="external-variables">External Variables</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">extern</span> storage_servers storage_server_list;
+</span></span></code></pre></div><p>The <code>storage_server_list</code> variable holds the list of connected storage servers.</p>
+<h3 id="functions-prototypes">Functions Prototypes</h3>
+<p><a href="/team-76/docs/functions/">$ cd ./functions</a></p>
+
+</article>
+
+            </div>
+        </main>
+    </body>
+</html>
